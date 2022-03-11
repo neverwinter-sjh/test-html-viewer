@@ -9,66 +9,9 @@
     <meta name="format-detection" content="telephone=no" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover, shrink-to-fit=no, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <meta
-      name="description"
-      content="갤러리아백화점의 프리미엄 온라인쇼핑몰입니다!"
-    />
-    <meta
-      property="og:title"
-      content="갤러리아백화점 : 네이버쇼핑 스마트스토어"
-    />
-    <meta
-      property="og:image"
-      content="https://shop-phinf.pstatic.net/20160512_53/galleria1_1463034341496ucxe6_JPEG/69655340017604890_1173588640.jpg?type=o1000"
-    />
-    <meta
-      property="og:description"
-      content="갤러리아백화점의 프리미엄 온라인쇼핑몰입니다!"
-    />
-    <meta property="og:type" content="article" />
-    <meta
-      name="twitter:title"
-      content="갤러리아백화점 : 네이버쇼핑 스마트스토어"
-    />
-    <meta
-      name="twitter:image"
-      content="https://shop-phinf.pstatic.net/20160512_53/galleria1_1463034341496ucxe6_JPEG/69655340017604890_1173588640.jpg?type=o1000"
-    />
-    <meta
-      name="twitter:description"
-      content="갤러리아백화점의 프리미엄 온라인쇼핑몰입니다!"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <link
-      rel="stylesheet"
-      href="https://static-resource-smartstore.pstatic.net/smartstore/m/static/20220310141308/common.css"
-    />
-
-    <link
-      rel="shortcut icon"
-      href="https://img-shop.pstatic.net/storefarm/front/etc/mobile_favicon.png?1"
-      type="image/png"
-    />
-
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="57x57"
-      href="https://shop-phinf.pstatic.net/20160512_53/galleria1_1463034341496ucxe6_JPEG/69655340017604890_1173588640.jpg?type=m57"
-    />
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="72x72"
-      href="https://shop-phinf.pstatic.net/20160512_53/galleria1_1463034341496ucxe6_JPEG/69655340017604890_1173588640.jpg?type=m72"
-    />
-    <link
-      rel="apple-touch-icon-precomposed"
-      sizes="114x114"
-      href="https://shop-phinf.pstatic.net/20160512_53/galleria1_1463034341496ucxe6_JPEG/69655340017604890_1173588640.jpg?type=m114"
-    />
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <title>갤러리아백화점</title>
   </head>
   <body>
@@ -100,11 +43,13 @@
       <br />test <br />test <br />test <br />test <br />test <br />test
       <br />test <br />
     </div>
-    <div class="_1onojHZHA9 SsafXrMO3D _1Fnf5hsHbp">
-      <img src="img1.jpeg" style="width: 100%; vertical-align: middle" />
-      <img src="img1.jpeg" style="width: 100%; vertical-align: middle" />
-      <img src="img1.jpeg" style="width: 100%; vertical-align: middle" />
-      <img src="img1.jpeg" style="width: 100%; vertical-align: middle" />
+    <div class="_1onojHZHA9 SsafXrMO3D _1Fnf5hsHbp" id="image_area">
+      <div class="inner">
+        <img src="img1.jpeg" style="width: 100%; vertical-align: middle" />
+        <img src="img1.jpeg" style="width: 100%; vertical-align: middle" />
+        <img src="img1.jpeg" style="width: 100%; vertical-align: middle" />
+        <img src="img1.jpeg" style="width: 100%; vertical-align: middle" />
+      </div>
     </div>
     <div class="no_scale">
       test <br />
@@ -134,5 +79,34 @@
       <br />test <br />test <br />test <br />test <br />test <br />test
       <br />test <br />
     </div>
+    <script>
+      
+
+      document.documentElement.addEventListener(
+        "touchstart",
+        function (event) {
+          const imageParent = $(event.srcElement.parentElement).parents('#image_area')
+          if (event.touches.length > 1 && imageParent.length === 0) {
+            event.preventDefault();
+          }
+        },
+        false
+      );
+
+      let lastTouchEnd = 0;
+
+      document.documentElement.addEventListener(
+        "touchend",
+        function (event) {
+          const imageParent = $(event.srcElement.parentElement).parents('#image_area')
+          const now = new Date().getTime();
+          if (now - lastTouchEnd <= 300 && imageParent.length === 0) {
+            event.preventDefault();
+          }
+          lastTouchEnd = now;
+        },
+        false
+      );
+    </script>
   </body>
 </html>
